@@ -1,7 +1,4 @@
 # Sync_FIFO
-Here is the revised `README.md` section for your FIFO, formatted cleanly with bullet points instead of tables.
-
----
 
 ## Synchronous FIFO with Synchronous Reset
 
@@ -10,15 +7,15 @@ This module implements a synthesizable, parameterized **Synchronous FIFO (First-
 ### Key Features
 
 * **Single-Clock Domain:** Eliminates the need for complex clock domain crossing (CDC) circuitry.
-* 
+  
 **Active-Low Synchronous Reset:** Cleanly resets the internal read/write pointers and the data output register on the rising clock edge when `rst` is pulled low.
 
 
-* 
+
 **Pointer-Based Status Flags:** Employs an extra bit in the pointer width (`add_width`) to distinguish between completely `full` and completely `empty` states seamlessly.
 
 
-* 
+
 **Parametric Flexibility:** Easily scale the data width and FIFO capacity using `data_width` and `depth` parameters.
 
 
@@ -38,12 +35,10 @@ This module implements a synthesizable, parameterized **Synchronous FIFO (First-
 
 * **rd_en** (Input, 1-bit): Read Enable. Drives data extraction from the FIFO memory when high.
 
-
-* 
+ 
 **din** (Input, `[data_width-1:0]`): Parallel data input bus.
 
-
-* 
+ 
 **dout** (Output, `[data_width-1:0]`): Registered parallel data output bus.
 
 
@@ -59,37 +54,24 @@ This module implements a synthesizable, parameterized **Synchronous FIFO (First-
 ### Internal Architecture & Flag Logic
 
 The FIFO utilizes a dual-port memory array (`mem`). The status flags are evaluated combinationally based on the status of the write pointer (`wr_ptr`) and read pointer (`rd_ptr`):
-
-* 
+ 
 **Empty Condition:** Triggered when both pointers match exactly.
 
 
-
-$$\text{empty} = (\text{wr\_ptr} == \text{rd\_ptr})$$
-
-
-* 
 **Full Condition:** Triggered when the lower address bits match, but the MSB (Most Significant Bit) differs, indicating the write pointer has wrapped around the memory space once.
 
 
-
-$$\text{full} = (\text{wr\_ptr[add\_width]} \neq \text{rd\_ptr[add\_width]}) \ \&\& \ (\text{wr\_ptr[add\_width-1:0]} == \text{rd\_ptr[add\_width-1:0]})$$
-
-
-
----
-
 ### Parameters
 
-* 
+
 **data_width** (Default: `8`): The bit-width of each data word.
 
 
-* 
+
 **depth** (Default: `16`): The maximum number of data words the memory array can hold.
 
 
-* 
+
 **add_width** (Default: `4`): The actual address bus width needed to index the memory space ($2^{\text{add\_width}} = \text{depth}$).
 
 
