@@ -72,7 +72,7 @@ The FIFO utilizes a dual-port memory array (`mem`). The status flags are evaluat
 
 
 
-**add_width** (Default: `4`): The actual address bus width needed to index the memory space ($2^{\text{add\_width}} = \text{depth}$).
+**add_width** (Default: `4`): The actual address bus width needed to index the memory space.
 
 
 
